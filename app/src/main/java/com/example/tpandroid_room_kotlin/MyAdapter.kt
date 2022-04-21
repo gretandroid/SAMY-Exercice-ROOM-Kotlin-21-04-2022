@@ -10,7 +10,8 @@ import com.example.tpandroid_room_kotlin.databinding.RowBinding
 import java.text.SimpleDateFormat
 import java.util.*
 
-class MyAdapter(val listener: listItemListener, val persons: List<PersonEntity>): RecyclerView.Adapter<ViewHolder>() {
+class MyAdapter(val listener: ListItemListener, val persons: List<PersonEntity>): RecyclerView.Adapter<ViewHolder>() {
+
 
     val selectedPersons = arrayListOf<PersonEntity>()
 
@@ -28,6 +29,12 @@ class MyAdapter(val listener: listItemListener, val persons: List<PersonEntity>)
             name.text = person.nom
             date.text = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(person.date)
 
+            if(selectedPersons.contains(person)) {
+                checkbox.setImageResource(android.R.drawable.checkbox_on_background)
+            } else {
+                checkbox.setImageResource(android.R.drawable.checkbox_off_background)
+            }
+
             checkbox.setOnClickListener{
                 if(selectedPersons.contains(person)) {
                     selectedPersons.remove(person)
@@ -36,7 +43,6 @@ class MyAdapter(val listener: listItemListener, val persons: List<PersonEntity>)
                     selectedPersons.add(person)
                     checkbox.setImageResource(android.R.drawable.checkbox_on_background)
                 }
-
                 listener.inItemSelectionChanged()
             }
         }
@@ -52,7 +58,7 @@ class MyAdapter(val listener: listItemListener, val persons: List<PersonEntity>)
         val binding = RowBinding.bind(itemView)
     }
 
-    interface listItemListener {
+    interface ListItemListener {
         fun onItemClick(id: Int)
         fun inItemSelectionChanged()
     }
