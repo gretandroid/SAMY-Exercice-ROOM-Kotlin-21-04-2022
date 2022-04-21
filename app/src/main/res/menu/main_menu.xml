@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+            android:title="Ajouter"
+            android:icon="@android:drawable/ic_input_add"
+            app:showAsAction="ifRoom"
+            android:onClick="addAllPersonsButtonOnClick" />
+    <item
+            android:title="Supprimer"
+            android:icon="@android:drawable/ic_delete"
+            app:showAsAction="ifRoom"
+            android:onClick="deleteAllPersonsButtonOnClick" />
+</menu>
